@@ -23,7 +23,8 @@ app = Flask(__name__)
 
 with open("config.json") as config_file:
     config = json.load(config_file)
-logging.basicConfig(filename = 'smart_alarm.log', encoding = "utf-8", level = logging.DEBUG)
+logging.basicConfig(filename = 'smart_alarm.log', encoding = "utf-8",\
+    level = logging.DEBUG)
 s = sched.scheduler(time.time, time.sleep)
 alarms_list = []
 alarm_list_sched = []
@@ -175,18 +176,16 @@ def weather_notifications():
             wind_dictionary = {'title' : 'Current wind information',
             'content' : wind_notification}
             if wind_dictionary not in dismissed_notifications:
-                notifications_list.append(wind_dictionary) if\
-                    wind_dictionary not in notifications_list else\
-                        notifications_list
+                if wind_dictionary not in notifications_list:
+                    notifications_list.append(wind_dictionary)
         if daily:
             rain_probability = "The probably of raining today is "\
                 + str(int(daily_pop*100)) + " percent. "
             rain_dictionary = {'title' : 'Rain Probability of today',
             'content' : rain_probability}
             if rain_dictionary not in dismissed_notifications:
-                notifications_list.append(rain_dictionary) if\
-                    rain_dictionary not in notifications_list else\
-                        notifications_list
+                if rain_dictionary not in notifications_list:
+                    notifications_list.append(rain_dictionary)
             daily_temp_uvi = "The maximum and minimum temperature today is "\
                 + str(daily_temp_max) + " degrees celcius and "\
                     + str(daily_temp_min) + " degrees celcius respectively."\
@@ -194,14 +193,13 @@ def weather_notifications():
             temp_uvi_dictionary = {'title' : "Today's weather briefing",
             'content' : daily_temp_uvi}
             if temp_uvi_dictionary not in dismissed_notifications:
-                notifications_list.append(temp_uvi_dictionary) if\
-                    temp_uvi_dictionary not in notifications_list else\
-                        notifications_list
+                if temp_uvi_dictionary not in notifications_list:
+                    notifications_list.append(temp_uvi_dictionary)
     s.enter(refresh_freq, 1, weather_notifications, )
 
-def get_uk_covid_data() -> str:
+def uk_covid_announcement() -> str:
     """
-    Returning the latest COVID-19 figures in user-defined location.
+    Returning the latest COVID-19 figures in user-defined local location.
 
     Returned figures include:
         - Last-updated date
@@ -216,7 +214,6 @@ def get_uk_covid_data() -> str:
     """
     area = str(config["covid19_api"]["area_name"])
     local = ['areaName={}'.format(area)]
-    covid_refresh_freq = config["covid19_api"]["covid_refresh_frequency"]
     cases_and_deaths = {
         "date": "date",
         "areaName": "areaName",
@@ -256,9 +253,49 @@ def get_uk_covid_data() -> str:
     except IsADirectoryError:
         logging.error("Error : The filename is not defined in the path")
     except ValueError:
-        logging.error("Error : The filename does not end with the correct"\
-            + "extension for the requested format")
-    s.enter(covid_refresh_freq, 1, get_uk_covid_data, )
+        error = "Error : The filename does not end with the correct"\
+            + "extension for the requested format"
+        logging.error(error)
+
+def uk_covid_notifications():
+    """
+    Appending the latest national COVID-19 figures of the UK to the list
+    of notifications.
+    """
+    covid_refresh_freq = config["covid19_api"]["covid_refresh_frequency"]
+    england_only = ['areaType=nation', 'areaName=England']
+    cases_and_deaths = {
+    "date": "date",
+    "areaName": "areaName",
+    "areaCode": "areaCode",
+    "newCasesByPublishDate": "newCasesByPublishDate",
+    "cumCasesByPublishDate": "cumCasesByPublishDate",
+    }
+    api = Cov19API(filters = england_only, structure = cases_and_deaths,
+    latest_by="newCasesByPublishDate")
+    get = api.get_json (as_string = True)
+    data = json.loads(get)
+    try:
+        last_updated = data["lastUpdate"][:10]
+        last_updated = datetime.strptime(last_updated, "%Y-%m-%d")
+        last_updated = datetime.strftime(last_updated, "%A, %d %B, %Y")
+        new_day_cases = data['data'][0]['newCasesByPublishDate']
+        new_cum_cases = data['data'][0]['cumCasesByPublishDate']
+        covid_dictionary = {'title' : 'Latest COVID-19 cases in the UK',
+        'content' : 'There are ' + str(new_day_cases)\
+            + ' new COVID cases on ' + str(last_updated)\
+                + '. There are totally now ' + str(new_cum_cases)\
+                    + ' COVID cases in the UK.'}
+    except IsADirectoryError:
+        logging.error("Error : The filename is not defined in the path")
+    except ValueError:
+        error = "Error : The filename does not end with the correct"\
+            + "extension for the requested format"
+        logging.error(error)
+    if covid_dictionary not in dismissed_notifications:
+        if covid_dictionary not in notifications_list:
+            notifications_list.append(covid_dictionary)
+    s.enter(covid_refresh_freq, 1, uk_covid_notifications, )
 
 def top_news_titles() -> str:
     """
@@ -299,10 +336,8 @@ def top_news_details() -> dict:
     User-defined variables include:
         - Number of news stories to return
     """
-    api = config["news"]["api_key"]
-    language = config["news"]["language"]
-    newsapi = NewsApiClient (api_key = api)
-    top_headlines = newsapi.get_top_headlines (language = language)
+    newsapi = NewsApiClient (api_key = config["news"]["api_key"])
+    top_headlines = newsapi.get_top_headlines (language = config["news"]["language"])
     refresh_freq = config["news"]["news_refresh_frequency"]
     if top_headlines["status"] == "ok":
         articles = top_headlines["articles"]
@@ -318,26 +353,13 @@ def top_news_details() -> dict:
             content = Markup("%s <br> %s") % (details['description'], url_link)
             dictionary = {'title' : title, 'content' : content}
             if dictionary not in dismissed_notifications:
-                notifications_list.append(dictionary) if dictionary not in\
-                    notifications_list else notifications_list
+                if dictionary not in notifications_list:
+                    notifications_list.append(dictionary)
     elif top_headlines["status"] == "error":
         error_output = "Error : " + top_headlines["code"] + " - "\
             + top_headlines["message"]
         logging.error(error_output)
     s.enter(refresh_freq, 1, top_news_details, )
-
-def notification(new_notifications : str) -> None:
-    """
-    Appending notifications (apart from news stories) to notifications_list.
-
-    Keyword Arguments:
-    new_notifications --  new notification to be added to the list
-
-    The dictionary take the format of : {'title':title, 'content':content}
-    """
-    if new_notifications not in dismissed_notifications:
-        notifications_list.append(new_notifications) if new_notifications\
-            not in notifications_list else notifications_list
 
 def announcement(alarm_label : str, announcement_type : str) -> None:
     """
@@ -349,19 +371,19 @@ def announcement(alarm_label : str, announcement_type : str) -> None:
         b. news_only (time, local COVID-19 figures, top news stories)
         c. news_and_weather (time, current weather, local COVID-19 figures, top news stories)
     """
-    greeting = "Hello"
     if int(strftime("%H", localtime())) >6 and int(strftime("%H", localtime())) <= 11:
         greeting = "Good Morning, "
     if int(strftime("%H", localtime())) > 11 and int(strftime("%H", localtime())) <= 18:
         greeting = "Good Afternoon, "
     if int(strftime("%H", localtime())) > 18 and int(strftime("%H", localtime())) < 23:
         greeting = "Good Evening, "
+    else:
+        greeting = "Hello, "
     time_briefing = " the time now is " + strftime("%H:%M", localtime())\
         + " and it is the time of your alarm '" + alarm_label + "'. "
     weather_briefing = current_weather()
-    covid_briefing = get_uk_covid_data()
+    covid_briefing = uk_covid_announcement()
     news_briefing = top_news_titles()
-    briefing = "Defauly Announcement"
     announcement_default = greeting + time_briefing + weather_briefing\
         + covid_briefing + news_briefing
     announcement_with_weather = greeting + time_briefing + weather_briefing\
@@ -379,14 +401,19 @@ def announcement(alarm_label : str, announcement_type : str) -> None:
     try:
         engine.endLoop()
     except RuntimeError:
-        logging.error("PyTTSx3 Endloop error detected - Program allowed to"\
-            + " continue without adjustment.")
+        error = "PyTTSx3 Endloop error detected - Program allowed to"\
+            + " continue without adjustment."
+        logging.error(error)
     engine.say(briefing)
     engine.runAndWait()
     for entry in alarms_list:
         if entry['title'] == alarm_label:
             alarms_list.remove(entry)
-    return briefing
+    for alarms in alarm_list_sched:
+        if alarms['alarm_label'] == alarm_label:
+            alarm_list_sched.remove(alarms)
+    log_info = "Alarm Triggered : " + briefing
+    logging.info(log_info)
 
 def alarm(alarm_datetime, alarm_label, with_news, with_weather):
     """
@@ -404,40 +431,40 @@ def alarm(alarm_datetime, alarm_label, with_news, with_weather):
     with_news -- Whether news should be included in the announcement
     with_weather -- Whether weather should be included in the announcement
     """
-    time_now_HHMMSS = datetime.strptime(datetime.now().strftime\
+    current_time = datetime.strptime(datetime.now().strftime\
         ("%Y-%m-%d %H:%M:%S"), "%Y-%m-%d %H:%M:%S")
     alarm_time = alarm_datetime[0:10] + " " + alarm_datetime[11:16]
     time_alarm = datetime.strptime(alarm_time, "%Y-%m-%d %H:%M")
-    time_delay = time_alarm - time_now_HHMMSS
+    time_delay = time_alarm - current_time
     time_delay_sec = int(time_delay.total_seconds())
     if with_news == 'news' and with_weather == 'weather':
         content = "Your alarm is set at " + str(time_alarm) + " with time,"\
             + " weather, COVID and news announcements. (Created at " +\
-                str(time_now_HHMMSS) + ")"
+                str(current_time) + ")"
         announcement_type = "news_and_weather"
     elif with_news == 'news':
         content = "Your alarm is set at " + str(time_alarm) + " with time,"\
             + " COVID and news announcements. (Created at " +\
-                str(time_now_HHMMSS) + ")"
+                str(current_time) + ")"
         announcement_type = "news_only"
     elif with_weather == 'weather':
         content = "Your alarm is set at " + str(time_alarm) + " with time,"\
             + " weather and COVID announcements. (Created at " +\
-                str(time_now_HHMMSS) + ")"
+                str(current_time) + ")"
         announcement_type = "weather_only"
     else:
         content = "Your alarm is set at " + str(time_alarm) + " with"\
             + " default announcements. (Created at " +\
-                str(time_now_HHMMSS) + ")"
+                str(current_time) + ")"
         announcement_type = "news_and_weather"
     title = alarm_label
     alarm_dictionary = {'title' : title, 'content' : content}
     alarm_sched_directory = {'alarm_label':alarm_label,
     'time_delay_sec':time_delay_sec,
     'announcement_type':announcement_type,
-    'created_time':str(time_now_HHMMSS)}
-    alarms_list.append(alarm_dictionary) if alarm_dictionary not in\
-        alarms_list else alarms_list
+    'id_key':str("alarm_" + str(title) + "_for_time" + str(time_alarm))}
+    if alarm_dictionary not in alarms_list:
+        alarms_list.append(alarm_dictionary)
     alarm_list_sched.append(alarm_sched_directory)
     run_alarm(alarm_label)
     logging.info(alarm_list_sched)
@@ -462,8 +489,7 @@ def run_alarm(alarm_label : str):
             alarm_label = alarms['alarm_label']
             time_delay = alarms['time_delay_sec']
             announcement_type = alarms['announcement_type']
-            created_time = alarms['created_time']
-            s.enter(time_delay, priority, announcement,\
+            alarms['id_key'] = s.enter(time_delay, priority, announcement,\
                 kwargs={'alarm_label' : alarm_label,\
                     'announcement_type' : announcement_type})
             logging.info(s.queue)
@@ -490,13 +516,12 @@ def index():
         remove_notifications -- Title of the notifications to be dismissed
     """
     s.run(blocking=False)
-    page_title = "CA3 - Smart Alarm"
+    page_title = Markup("ECM1400 CA3 <br> COVID_19 Smart Alarm")
     favicon = "/static/favicon.ico"
     image = "image.jpg"
     top_news_details()
     weather_notifications()
-    notifications = notifications_list
-    alarms = alarms_list
+    uk_covid_notifications()
     remove_alarms = request.args.get("alarm_item")
     remove_notifications = request.args.get("notif")
     alarm_datetime = request.args.get("alarm")
@@ -518,19 +543,23 @@ def index():
             if entry['title'] == remove_alarms:
                 alarms_list.remove(entry)
                 dismissed_alarms.append(entry)
+                for alarms in alarm_list_sched:
+                    if alarms['alarm_label'] == remove_alarms:
+                        id_key = alarms['id_key']
+                        s.cancel(id_key)
                 return redirect('/index')
     if remove_notifications:
         for entry in notifications_list:
             if entry['title'] == remove_notifications:
                 notifications_list.remove(entry)
                 dismissed_notifications.append(entry)
-                logging.info("News article '" + remove_notifications\
-                    + "' is dismissed and removed from notifications_list")
+                log_info = "News article '" + remove_notifications\
+                    + "' is dismissed and removed from notifications_list"
+                logging.info(log_info)
                 return redirect('/index')
-    return render_template('index.html', title = page_title, \
-        favicon = favicon, image = image, notifications = notifications, \
-            alarms = alarms)
+    return render_template('index.html', title = page_title,\
+        favicon = favicon, image = image,\
+            notifications = notifications_list, alarms = alarms_list)
 
 if __name__ == "__main__":
     app.run()
-    
