@@ -1,6 +1,6 @@
 # COVID19_Smart_Alarm
 
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/matthewcheng222/COVID19_Smart_Alarm/blob/main/LICENSE)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/matthewcheng222/COVID19_Smart_Alarm/blob/main/LICENSE) [![PyPI status](https://img.shields.io/pypi/status/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 
 COVID19_Smart_Alarm is developed for Continous Assessment 3 of the ECM1400 module. It is an alarm clock with smart features, which is espically useful during the global pandemic. 
 
@@ -65,15 +65,15 @@ For the first section "current_weather", replace the contents represented with <
     
 1. ```"api_key":"<feild>"``` - Your own API key from openweather. (Can be obtained [here](https://openweathermap.org/appid)) 
    
-2. ```"lat":"<feild>"``````"lon":"<feild>"``` - Your location in terms of latitude and longitude (Can be obtained [here](https://www.latlong.net/))
+2. ```"lat":"<feild>"``` and ```"lon":"<feild>"``` - Your location in terms of latitude and longitude (Can be obtained [here](https://www.latlong.net/))
    
 3. ```"units":"<feild>"``` - Your preference of units to be displayed. Below are units that you can choose from:
 
-       *standard (temperature in Kelvin, wind speed in meter/sec)*
+    ```standard``` (temperature in Kelvin, wind speed in meter/sec)
        
-       *metric (temperature in Celsius, wind speed in meter/sec)*
+    ```metric``` (temperature in Celsius, wind speed in meter/sec)
        
-       *imperial (temperature in Fahrenheit, wind speed in miles/hour)*
+    ```imperial``` (temperature in Fahrenheit, wind speed in miles/hour)
        
 4. ```"wx_refresh_frequency":<feild>``` - How often would you like weather data to refresh (in seconds)
    
