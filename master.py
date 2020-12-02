@@ -60,7 +60,7 @@ def current_weather() -> str:
     try:
         if data["cod"]: #Dictionary key "cod" appear if there is an error
             message = data["message"]
-            logging.error(message)
+            logging.error(str(message))
     except KeyError: #If key "cod" not found -> Normal
         temperature = data["current"]["temp"]
         feels_like = data["current"]["feels_like"]
@@ -118,7 +118,7 @@ def current_weather() -> str:
                 + " degrees celsius. The humidity is " + str(humidity)\
                     + " percent currently. Additionally, "\
                         + str(precip_condition)
-    weather_log = "Weather info fetched : " + output
+    weather_log = "Weather info fetched : " + str(output)
     logging.info(weather_log) #Logging the output of current weather
     return output
 
@@ -144,7 +144,7 @@ def weather_notifications():
     data = json.loads(response.text)
     try:
         if data["cod"]: #Dictionary key "cod" appear if there is an error
-            message = data["message"]
+            message = str(data["message"])
             logging.error(message) #Logging the error message returned
     except KeyError: #If key "cod" not found -> Normal
         current_wind_speed = data["current"]["wind_speed"]
@@ -182,7 +182,8 @@ def weather_notifications():
             if wind_dictionary not in dismissed_notifications:
                 if wind_dictionary not in notifications_list:
                     notifications_list.append(wind_dictionary)
-                    wind_log = "Wind notification created : "+wind_dictionary
+                    wind_log = "Wind notification created : "\
+                        + str(wind_dictionary)
                     logging.info(wind_log) #Logging created wind notification
         if daily: #Always triggered notification if weather data is present
             rain_probability = "The probably of raining today is "\
@@ -192,7 +193,8 @@ def weather_notifications():
             if rain_dictionary not in dismissed_notifications:
                 if rain_dictionary not in notifications_list:
                     notifications_list.append(rain_dictionary)
-                    rain_log = "Rain notification created : "+rain_dictionary
+                    rain_log = "Rain notification created : " +\
+                        str(rain_dictionary)
                     logging.info(rain_log) #Logging created rain notification
             daily_temp_uvi = "The maximum and minimum temperature today is "\
                 + str(daily_temp_max) + " degrees celcius and "\
@@ -204,7 +206,7 @@ def weather_notifications():
                 if temp_uvi_dictionary not in notifications_list:
                     notifications_list.append(temp_uvi_dictionary)
                     temp_uvi_log = "Temp and UVI notification created : "\
-                        + temp_uvi_dictionary
+                        + str(temp_uvi_dictionary)
                     logging.info(temp_uvi_log)
                     #Logging created temp&UVI notification
     s.enter(refresh_freq, 1, weather_notifications, ) #Rate of fetching data
@@ -261,7 +263,8 @@ def uk_covid_announcement() -> str:
                     + ". There are " + str(new_cum_cases) + " cases and "\
                         + str(new_cum_death_new)\
                             + " death cases cumulatively. "
-        covid_announcement_log = "COVID-19 announcement returned : " + output
+        covid_announcement_log = "COVID-19 announcement returned : "\
+            + str(output)
         logging.info(covid_announcement_log)
         #Logging created COVID-19 notification
         return output
@@ -329,7 +332,7 @@ def uk_covid_notifications():
         if covid_national_dictionary not in notifications_list:
             notifications_list.append(covid_national_dictionary)
             covid_log = "COVID-19 national notification created : "\
-            + covid_national_dictionary
+            + str(covid_national_dictionary)
             logging.info(covid_log)
             #Logging created COVID-19 national cases notification
     if new_day_cases >= 10000:
@@ -338,7 +341,7 @@ def uk_covid_notifications():
             if covid_threshold_dictionary not in notifications_list:
                 notifications_list.append(covid_threshold_dictionary)
                 threshold_log = "COVID-19 threshold notification created : "\
-                    + covid_threshold_dictionary
+                    + str(covid_threshold_dictionary)
                 logging.info(threshold_log)
                 #Logging created COVID-19 threshold notification
     s.enter(covid_refresh_freq, 1, uk_covid_notifications, )
@@ -367,7 +370,7 @@ def top_news_titles() -> str:
         news_join = news_join.join(news_list)
         output = "Here are the top " + str(to_export)\
             + " news story titles for today: " + news_join
-        news_a_log = "News announcement created : " + output
+        news_a_log = "News announcement created : " + str(output)
         logging.info(news_a_log) #Logging created news announcement
     elif top_headlines["status"] == "error": #API status is error -> log
         error_output = "Error : " + top_headlines["code"] + " - "\
@@ -409,7 +412,8 @@ def top_news_details() -> dict:
             if dictionary not in dismissed_notifications:
                 if dictionary not in notifications_list:
                     notifications_list.append(dictionary)
-                    news_n_log = "News notification created : " + dictionary
+                    news_n_log = "News notification created : "\
+                        + str(dictionary)
                     logging.info(news_n_log)
                     #Logging created news notification
     elif top_headlines["status"] == "error": #API status is error -> log
@@ -477,7 +481,7 @@ def announcement(alarm_label : str, announcement_type : str) -> None:
         if alarms['alarm_label'] == alarm_label:
             alarm_list_sched.remove(alarms)
             #Removing entry from alarm_list_sched when alarm trigger
-    log_info = "Alarm Triggered : " + briefing
+    log_info = "Alarm Triggered : " + str(briefing)
     logging.info(log_info) #Logging that the alarm has triggered
 
 def alarm(alarm_datetime, alarm_label, with_news, with_weather):
@@ -530,7 +534,7 @@ def alarm(alarm_datetime, alarm_label, with_news, with_weather):
     'id_key':str("alarm_" + str(title) + "_for_time" + str(time_alarm))}
     if alarm_dictionary not in alarms_list:
         alarms_list.append(alarm_dictionary)
-        alarms_log = "Alarm entry created : " + alarm_dictionary
+        alarms_log = "Alarm entry created : " + str(alarm_dictionary)
         logging.info(alarms_log) #Logging created alarm entry
         alarm_list_sched.append(alarm_sched_directory)
     run_alarm(alarm_label) #Calling function to add alarm into schedule
@@ -618,7 +622,7 @@ def index():
                     if alarms['alarm_label'] == remove_alarms:
                         id_key = alarms['id_key'] #Using identifier to remove
                         s.cancel(id_key) #Removing alarm from the schedule
-                        alarm_dis = "Alarm dismissed : " + remove_alarms
+                        alarm_dis = "Alarm dismissed : " + str(remove_alarms)
                         logging.info(alarm_dis)
                 return redirect('/index') #Return to /index
     if remove_notifications: #If 'notifications' for the alarm is clicked
@@ -628,7 +632,8 @@ def index():
                 #Removing notification from the list
                 dismissed_notifications.append(entry)
                 #Appending notification to dismissed_notifications
-                noti_dis = "Notification dismissed : " + remove_notifications
+                noti_dis = "Notification dismissed : "\
+                    + str(remove_notifications)
                 logging.info(noti_dis) #logging dismissed notification
                 return redirect('/index') #Return to /index
     return render_template('index.html', title = page_title,\
