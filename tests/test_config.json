@@ -1,0 +1,24 @@
+{
+    "current_weather":{
+        "api_key":"b639368301416c5e11f2567ebc483341",
+        "lat":"50.716667",
+        "lon":"-3.533333",
+        "units":"metric",
+        "wx_refresh_frequency":3600,
+        "wind_speed_trigger":10.7
+    },
+    "news":{
+        "api_key":"b7685dc7b3414113aa1d0008ccf5656a",
+        "language":"en",
+        "no_of_news":5, 
+        "news_refresh_frequency":3600
+    },
+    "covid19_api":{
+        "area_name":"Exeter", 
+        "covid_refresh_frequency":3600,
+        "no_to_trigger_threshold":10000
+    },
+    "pyttsx3":{
+        "speak_rate":165
+    }
+}
