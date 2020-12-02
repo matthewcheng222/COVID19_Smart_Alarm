@@ -1,5 +1,7 @@
 # COVID19_Smart_Alarm
 
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/matthewcheng222/COVID19_Smart_Alarm/blob/main/LICENSE)
+
 COVID19_Smart_Alarm is developed for Continous Assessment 3 of the ECM1400 module. It is an alarm clock with smart features, which is espically useful during the global pandemic. 
 
 ## Getting Started
@@ -99,6 +101,20 @@ For the last section "pyttsx3", fill in the following feilds:
 13. ```"speak_rate":<feild>``` - The rate of speaking for pyttsx3
 
 *Note : API keys may require serval hours to be activated*
+
+***
+
+Other than config.json, the favicon of the webpage and the logo of the webpage can also be replaced. 
+
+#### Replacing the Favicon
+
+If you have a favicon with type .ico and resolution 16x16 px. You can replace the favicon of the website by putting ```favicon.ico``` into ```CA3 - COVID19 Smart Alarm/static```
+
+#### Replacing the Logo
+
+The logo can be replaced with a .jpg file which is square in dimension, by putting ```image.jpg``` into ```CA3 - COVID19 Smart Alarm/static/images```
+
+*Note : If the file name of favicon and logo replaced is not ```favicon.ico``` and ```image.jpg``` respectively, you will need to edit the name of file in the index function, replacing favicon.ico in ```favicon = "/static/favicon.ico"``` to be the name of your file, and replacing image.jpg in ```image = "image.jpg"``` to be the name of your file. 
 
 ***
 
@@ -208,11 +224,29 @@ The part of top news notification creates notifications according to the presele
 
 ***
 
+## Known Issues
+
+### Alarms do not trigger on the exact 'moment'
+
+Since this project uses Flask as a web application freamework, the webpage refreshes every minute after the last event has been done (e.g creating an alarm, removing an alarm). The alarm only triggers/rings when the webpage refreshes, therefore the alarm may not ring at the exact moment, but runs in same minute when the webpage refreshes. 
+
+### UK COVID-19 data
+
+Since UK COVID-19 data is updated once every day by Public Health England, COVID-19 data may not be from the same date when the program runs. To reduce confusion, I have included the last updated time of these data.
+
+Moreover, since the death data (daily and cumulative) are not updated everyday, but once every couple of days. New and cumulative death cases in announcements may be incorrect. 
+
+***
+
 ## Built With
 
 * [Python3](https://www.python.org/) - The Programming Language Used
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/) - The WSGI Web Application Framework used
 * [PyTTSx3](https://github.com/nateshmbhat/pyttsx3) - Used for converting Text-to-Speech 
+
+## Versioning
+
+[SemVer](http://semver.org/) is used for versioning
 
 ## Authors
 
@@ -221,5 +255,3 @@ The part of top news notification creates notifications according to the presele
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
