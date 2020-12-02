@@ -59,8 +59,7 @@ def current_weather() -> str:
     data = json.loads(response.text)
     try:
         if data["cod"]: #Dictionary key "cod" appear if there is an error
-            message = data["message"]
-            logging.error(str(message))
+            logging.error(str(data["message"]))
     except KeyError: #If key "cod" not found -> Normal
         temperature = data["current"]["temp"]
         feels_like = data["current"]["feels_like"]
@@ -335,7 +334,7 @@ def uk_covid_notifications():
             + str(covid_national_dictionary)
             logging.info(covid_log)
             #Logging created COVID-19 national cases notification
-    if new_day_cases >= 10000:
+    if new_day_cases >= int(config["covid19_api"]["no_to_trigger_threshold"]):
         #Raises a threshold notification if new COVID-19 cases is above 10000
         if covid_threshold_dictionary not in dismissed_notifications:
             if covid_threshold_dictionary not in notifications_list:
@@ -464,7 +463,8 @@ def announcement(alarm_label : str, announcement_type : str) -> None:
     elif announcement_type == "news_and_weather": #Setting announcement type
         briefing = announcement_default
     engine = pyttsx3.init() #Initializing the PyTTSx3 engine
-    engine.setProperty("rate", 165) #Setting the PyTTSx3 engine's speak rate
+    speak_rate = config["pyttsx3"]["speak_rate"]
+    engine.setProperty("rate", speak_rate) #Setting the PyTTSx3 engine's speak rate
     try:
         engine.endLoop() #Ending the PyTTSx3 loop if it is running
     except RuntimeError:
