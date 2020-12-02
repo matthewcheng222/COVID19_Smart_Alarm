@@ -55,8 +55,11 @@ Install Python packages that are required for this project, including:
 
 Clone this repository on your local computer using [this link](https://github.com/matthewcheng222/COVID19_Smart_Alarm.git) or by any other means.
 
+### Configuration
+
 After cloning, open ```config.json``` and fill in the following feilds. 
 
+*Note : Some feilds come with a default value, the end of this section shows the list and meaning of the default values*
 
 For the first section "current_weather", replace the contents represented with <feild> below: 
     
@@ -101,6 +104,40 @@ For the last section "pyttsx3", fill in the following feilds:
 13. ```"speak_rate":<feild>``` - The rate of speaking for pyttsx3
 
 *Note : API keys may require serval hours to be activated*
+
+### Default Values of config.json
+
+Below are the list and meanings of default values which is included in config.json
+
+#### Part "Current Weather"
+
+```"lat":"50.716667"``` and ```"lon":"-3.533333"``` -> Coordinates of Exeter
+
+```"units":"metric"``` -> Default units are set to metric (temperature in Celsius, wind speed in meter/sec)
+
+```"wx_refresh_frequency":3600``` -> Weather information will be updated every hour (3600 seconds) by default
+
+```"wind_speed_trigger":10.7``` -> Wind notification will be triggered when wind speed reaches 10.7 m/s (Strong Breeze in the Beaufort scale)
+
+#### Part "news"
+
+```"language":"en"``` -> Default language of news returned are set to English 
+
+```"no_of_news":5``` -> Default number of news to show in notifications list is 5
+
+```"news_refresh_frequency":3600``` -> News data will be updated every hour by default
+
+#### Part "covid19_api"
+
+```"area_name":"Exeter"``` -> Default location of local COVID-19 cases is Exeter
+
+```"covid_refresh_frequency":3600``` -> COVID-19 datawill be refreshed every hour by default 
+
+```"no_to_trigger_threshold":10000``` -> COVID-19 threshold reached notification will trigger if daily COVID-19 cases is above 10000 by default 
+
+#### Part "pyttsx3"
+
+```"speak_rate":165``` -> The speech rate of pyttsx3 engine is set to 165 by default
 
 ***
 
