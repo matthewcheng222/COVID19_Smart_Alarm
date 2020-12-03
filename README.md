@@ -26,7 +26,7 @@ Check if you have the latest version of Python in the command prompt/ terminal:
 python --version
 ```
 
-If you have a Python version below 3.7 or if you see "python: command not found". Please download and install a latest Python interpreter [here](https://www.python.org/downloads/).
+If you have version below 3.7 or if you see "python: command not found". Please download and install the latest Python interpreter [here](https://www.python.org/downloads/).
 
 ***
 
