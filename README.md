@@ -113,33 +113,33 @@ Below are the list and meanings of default values which is included in config.js
 
 #### "Current Weather"
 
-```"lat":"50.716667"``` and ```"lon":"-3.533333"``` -> Coordinates of Exeter
+* ```"lat":"50.716667"``` and ```"lon":"-3.533333"``` -> Coordinates of Exeter
 
-```"units":"metric"``` -> Default units are set to metric (temperature in Celsius, wind speed in meter/sec)
+* ```"units":"metric"``` -> Default units are set to metric (temperature in Celsius, wind speed in meter/sec)
 
-```"wx_refresh_frequency":3600``` -> Weather information will be updated every hour (3600 seconds) by default
+* ```"wx_refresh_frequency":3600``` -> Weather information will be updated every hour (3600 seconds) by default
 
-```"wind_speed_trigger":10.7``` -> Wind notification will be triggered when wind speed reaches 10.7 m/s (Strong Breeze in the Beaufort scale)
+* ```"wind_speed_trigger":10.7``` -> Wind notification will be triggered when wind speed reaches 10.7 m/s (Strong Breeze in the Beaufort scale)
 
 #### "News"
 
-```"language":"en"``` -> Default language of news returned are set to English 
+* ```"language":"en"``` -> Default language of news returned are set to English 
 
-```"no_of_news":5``` -> Default number of news to show in notifications list is 5
+* ```"no_of_news":5``` -> Default number of news to show in notifications list is 5
 
-```"news_refresh_frequency":3600``` -> News data will be updated every hour by default
+* ```"news_refresh_frequency":3600``` -> News data will be updated every hour by default
 
 #### "COVID19_API"
 
-```"area_name":"Exeter"``` -> Default location of local COVID-19 cases is Exeter
+* ```"area_name":"Exeter"``` -> Default location of local COVID-19 cases is Exeter
 
-```"covid_refresh_frequency":3600``` -> COVID-19 datawill be refreshed every hour by default 
+* ```"covid_refresh_frequency":3600``` -> COVID-19 datawill be refreshed every hour by default 
 
-```"no_to_trigger_threshold":10000``` -> COVID-19 threshold reached notification will trigger if daily COVID-19 cases is above 10000 by default 
+* ```"no_to_trigger_threshold":10000``` -> COVID-19 threshold reached notification will trigger if daily COVID-19 cases is above 10000 by default 
 
 #### "PYTTSX3"
 
-```"speak_rate":165``` -> The speech rate of pyttsx3 engine is set to 165 by default
+* ```"speak_rate":165``` -> The speech rate of pyttsx3 engine is set to 165 by default
 
 ***
 
