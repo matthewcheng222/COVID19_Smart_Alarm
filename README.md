@@ -59,17 +59,17 @@ Clone this repository on your local computer using [this link](https://github.co
 
 ### Configuration
 
-After cloning, open ```config.json``` and fill in the following feilds. 
+After cloning, open ```config.json``` and fill in the following fields. 
 
-*Note : Some feilds come with a default value, the end of this section shows the list and meaning of the default values*
+*Note : Some fields come with a default value, the end of this section shows the list and meaning of the default values*
 
-For **Section 1 - "Current_Weather"**, replace the contents represented with <feild>: 
+For **Section 1 - "Current_Weather"**, replace the contents represented with <field>: 
     
-* ```"api_key":"<feild>"``` - Your own API key from openweather. (Can be obtained [here](https://openweathermap.org/appid)) 
+* ```"api_key":"<field>"``` - Your own API key from openweather. (Can be obtained [here](https://openweathermap.org/appid)) 
    
-* ```"lat":"<feild>"``` and ```"lon":"<feild>"``` - Your location in terms of latitude and longitude (Can be obtained [here](https://www.latlong.net/))
+* ```"lat":"<field>"``` and ```"lon":"<field>"``` - Your location in terms of latitude and longitude (Can be obtained [here](https://www.latlong.net/))
    
-* ```"units":"<feild>"``` - Your preference of units to be displayed. Below are units that you can choose from:
+* ```"units":"<field>"``` - Your preference of units to be displayed. Below are units that you can choose from:
 
     * ```standard``` (temperature in Kelvin, wind speed in meter/sec)
        
@@ -77,33 +77,33 @@ For **Section 1 - "Current_Weather"**, replace the contents represented with <fe
        
     * ```imperial``` (temperature in Fahrenheit, wind speed in miles/hour)
        
-* ```"wx_refresh_frequency":<feild>``` - How often would you like the weather data to refresh (in seconds)
+* ```"wx_refresh_frequency":<field>``` - How often would you like the weather data to refresh (in seconds)
    
-* ```"wind_speed_trigger":<feild``` - If real-time wind speed exceeds this value, notifications will trigger (in units of your selection)
+* ```"wind_speed_trigger":<field>``` - If real-time wind speed exceeds this value, notifications will trigger (in units of your selection)
     
     
-For **Section 2 - "News"**, replace the contents represented with <feild>:
+For **Section 2 - "News"**, replace the contents represented with <field>:
 
-* ```"api_key":"<feild>"``` - Your own API key from newsapi. (Can be obtained [here](https://newsapi.org/))
+* ```"api_key":"<field>"``` - Your own API key from newsapi. (Can be obtained [here](https://newsapi.org/))
     
-* ```"language":"<feild>"``` - The language of news. (The 2-letter ISO-639-1 code)
+* ```"language":"<field>"``` - The language of news. (The 2-letter ISO-639-1 code)
     
-* ```"no_of_news":<feild>``` - The number of news stories to return (announcements and notifications)
+* ```"no_of_news":<field>``` - The number of news stories to return (announcements and notifications)
     
-* ```"news_refresh_frequency":<feild>``` - How often would you like news data to refresh (in seconds)
+* ```"news_refresh_frequency":<field>``` - How often would you like news data to refresh (in seconds)
 
 
-For **Section 3 - "COVID19_API"**, replace the contents represented with <feild>:
+For **Section 3 - "COVID19_API"**, replace the contents represented with <field>:
 
-* ```"area_name":<feild>``` - The location/region that you are in
+* ```"area_name":<field>``` - The location/region that you are in
 
-* ```"covid_refresh_frequency":<feild>``` - How often would you like COVID-19 data to be updated
+* ```"covid_refresh_frequency":<field>``` - How often would you like COVID-19 data to be updated
 
-* ```"no_to_trigger_threshold":<feild>``` - Number of daily cases above this value will trigger a COVID-19 notification
+* ```"no_to_trigger_threshold":<field>``` - Number of daily cases above this value will trigger a COVID-19 notification
 
-For **Section 4 - "PYTTSX3"**, replace the contents represented with <feild>:
+For **Section 4 - "PYTTSX3"**, replace the contents represented with <field>:
 
-* ```"speak_rate":<feild>``` - The rate of speaking for pyttsx3
+* ```"speak_rate":<field>``` - The rate of speaking for pyttsx3
 
 *Note : API keys may require serval hours to be activated*
 
@@ -193,17 +193,17 @@ If you can access and see the page correctly, the setup for this project is comp
 
 An alarm could be created using the form in the middle of the page, below are some instructions on how to do it.
 
-1. Fill in the ```date/time``` feild with the date and time you would like the alarm to trigger (In the format of YYYY-MM-DD HH:MM)
+1. Fill in the ```date/time``` field with the date and time you would like the alarm to trigger (In the format of YYYY-MM-DD HH:MM)
 
-2. Fill in the ```Update label``` feild for the label of the alarm
+2. Fill in the ```Update label``` field for the label of the alarm
 
-3. Tick the ```Include news briefing?``` feild if you would like news briefing to be included in your alarm announcement
+3. Tick the ```Include news briefing?``` field if you would like news briefing to be included in your alarm announcement
 
-4. Tick the ```Include weather briefing?``` feild if you would like weather briefing to be included in your alarm announcement
+4. Tick the ```Include weather briefing?``` field if you would like weather briefing to be included in your alarm announcement
 
-5. FInally, click the ```Submit``` button to create the alarm
+5. Finally, click the ```Submit``` button to create the alarm
 
-*Note : Browsers which do not support datetime_local feild do not have a date/time picker, therefore may require manual entry of dates and time*
+*Note : Browsers which do not support datetime_local field do not have a date/time picker, therefore may require manual entry of dates and time*
 
 ***
 
