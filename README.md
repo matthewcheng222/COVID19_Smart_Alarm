@@ -2,7 +2,7 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/matthewcheng222/COVID19_Smart_Alarm/blob/main/LICENSE) [![PyPI status](https://img.shields.io/pypi/status/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 
-COVID19_Smart_Alarm is developed for Continous Assessment 3 of the ECM1400 module. It is an alarm clock with smart features, which is espically useful during the global pandemic. 
+COVID19_Smart_Alarm is developed for Continous Assessment 3 of the ECM1400 module. It is an Alarm Clock with smart features, which is espically useful during the times of a global pandemic. 
 
 ## Getting Started
 
@@ -61,55 +61,55 @@ After cloning, open ```config.json``` and fill in the following feilds.
 
 *Note : Some feilds come with a default value, the end of this section shows the list and meaning of the default values*
 
-For the first section "current_weather", replace the contents represented with <feild> below: 
+For **Section 1 - "Current_Weather"**, replace the contents represented with <feild>: 
     
-1. ```"api_key":"<feild>"``` - Your own API key from openweather. (Can be obtained [here](https://openweathermap.org/appid)) 
+* ```"api_key":"<feild>"``` - Your own API key from openweather. (Can be obtained [here](https://openweathermap.org/appid)) 
    
-2. ```"lat":"<feild>"``` and ```"lon":"<feild>"``` - Your location in terms of latitude and longitude (Can be obtained [here](https://www.latlong.net/))
+* ```"lat":"<feild>"``` and ```"lon":"<feild>"``` - Your location in terms of latitude and longitude (Can be obtained [here](https://www.latlong.net/))
    
-3. ```"units":"<feild>"``` - Your preference of units to be displayed. Below are units that you can choose from:
+* ```"units":"<feild>"``` - Your preference of units to be displayed. Below are units that you can choose from:
 
-    ```standard``` (temperature in Kelvin, wind speed in meter/sec)
+    * ```standard``` (temperature in Kelvin, wind speed in meter/sec)
        
-    ```metric``` (temperature in Celsius, wind speed in meter/sec)
+    * ```metric``` (temperature in Celsius, wind speed in meter/sec)
        
-    ```imperial``` (temperature in Fahrenheit, wind speed in miles/hour)
+    * ```imperial``` (temperature in Fahrenheit, wind speed in miles/hour)
        
-4. ```"wx_refresh_frequency":<feild>``` - How often would you like weather data to refresh (in seconds)
+* ```"wx_refresh_frequency":<feild>``` - How often would you like weather data to refresh (in seconds)
    
-5. ```"wind_speed_trigger":<feild``` - If real-time wind speed exceeds this value, notifications will trigger (in units of your selection)
+* ```"wind_speed_trigger":<feild``` - If real-time wind speed exceeds this value, notifications will trigger (in units of your selection)
     
     
-For the second section "news", fill in the following feilds:
+For **Section 2 - "News"**, replace the contents represented with <feild>:
 
-6. ```"api_key":"<feild>"``` - Your own API key from newsapi. (Can be obtained [here](https://newsapi.org/))
+* ```"api_key":"<feild>"``` - Your own API key from newsapi. (Can be obtained [here](https://newsapi.org/))
     
-7. ```"language":"<feild>"``` - The language of news. (The 2-letter ISO-639-1 code)
+* ```"language":"<feild>"``` - The language of news. (The 2-letter ISO-639-1 code)
     
-8. ```"no_of_news":<feild>``` - The number of news stories to return (announcements and notifications)
+* ```"no_of_news":<feild>``` - The number of news stories to return (announcements and notifications)
     
-9. ```"news_refresh_frequency":<feild>``` - How often would you like news data to refresh (in seconds)
+* ```"news_refresh_frequency":<feild>``` - How often would you like news data to refresh (in seconds)
 
 
-For the third section "covid19_api", fill in the following feilds:
+For **Section 3 - "COVID19_API"**, replace the contents represented with <feild>:
 
-10. ```"area_name":<feild>``` - The location/region that you are in
+* ```"area_name":<feild>``` - The location/region that you are in
 
-11. ```"covid_refresh_frequency":<feild>``` - How often would you like COVID-19 data to be updated
+* ```"covid_refresh_frequency":<feild>``` - How often would you like COVID-19 data to be updated
 
-12. ```"no_to_trigger_threshold":<feild>``` - Number of daily cases above this value will trigger a COVID-19 notification
+* ```"no_to_trigger_threshold":<feild>``` - Number of daily cases above this value will trigger a COVID-19 notification
 
-For the last section "pyttsx3", fill in the following feilds:
+For **Section 4 - "PYTTSX3"**, replace the contents represented with <feild>:
 
-13. ```"speak_rate":<feild>``` - The rate of speaking for pyttsx3
+* ```"speak_rate":<feild>``` - The rate of speaking for pyttsx3
 
 *Note : API keys may require serval hours to be activated*
 
-### Default Values of config.json
+#### Default Values of config.json
 
-Below are the list and meanings of default values which is included in config.json
+Below are the list and meanings of default values which is included in config.json and replacing them is not necessary
 
-#### Part "Current Weather"
+#### "Current Weather"
 
 ```"lat":"50.716667"``` and ```"lon":"-3.533333"``` -> Coordinates of Exeter
 
@@ -119,7 +119,7 @@ Below are the list and meanings of default values which is included in config.js
 
 ```"wind_speed_trigger":10.7``` -> Wind notification will be triggered when wind speed reaches 10.7 m/s (Strong Breeze in the Beaufort scale)
 
-#### Part "news"
+#### "News"
 
 ```"language":"en"``` -> Default language of news returned are set to English 
 
@@ -127,7 +127,7 @@ Below are the list and meanings of default values which is included in config.js
 
 ```"news_refresh_frequency":3600``` -> News data will be updated every hour by default
 
-#### Part "covid19_api"
+#### "COVID19_API"
 
 ```"area_name":"Exeter"``` -> Default location of local COVID-19 cases is Exeter
 
@@ -135,21 +135,21 @@ Below are the list and meanings of default values which is included in config.js
 
 ```"no_to_trigger_threshold":10000``` -> COVID-19 threshold reached notification will trigger if daily COVID-19 cases is above 10000 by default 
 
-#### Part "pyttsx3"
+#### "PYTTSX3"
 
 ```"speak_rate":165``` -> The speech rate of pyttsx3 engine is set to 165 by default
 
 ***
 
-Other than config.json, the favicon of the webpage and the logo of the webpage can also be replaced. 
+Other than config.json, the favicon of the webpage and the logo of the webpage can also be replaced. Instructions are listed below. 
 
 #### Replacing the Favicon
 
-If you have a favicon with type .ico and resolution 16x16 px. You can replace the favicon of the website by putting ```favicon.ico``` into ```CA3 - COVID19 Smart Alarm/static```
+* If you have a favicon with type .ico and resolution 16x16 px. You can replace the favicon of the website by putting ```favicon.ico``` into ```CA3 - COVID19 Smart Alarm/static```
 
 #### Replacing the Logo
 
-The logo can be replaced with a .jpg file which is square in dimension, by putting ```image.jpg``` into ```CA3 - COVID19 Smart Alarm/static/images```
+* The logo can be replaced with a .jpg file which is square in dimension, by putting ```image.jpg``` into ```CA3 - COVID19 Smart Alarm/static/images```
 
 *Note : If the file name of favicon and logo replaced is not ```favicon.ico``` and ```image.jpg``` respectively, you will need to edit the name of file in the index function, replacing favicon.ico in ```favicon = "/static/favicon.ico"``` to be the name of your file, and replacing image.jpg in ```image = "image.jpg"``` to be the name of your file. 
 
@@ -258,6 +258,54 @@ COVID-19 infection threshold notification contains the threshold that new and cu
 #### Top News Notifications 
 
 The part of top news notification creates notifications according to the preselect number of news to include (set by user in config.json). Where the title of the notification widget is the title of the news, and the contents of the widget is the description of the news. News data are refreshed according to the frequency set in config.json. 
+
+***
+
+## Testing
+
+A number of tests files have been created and included with this project, and they can be distributed into 2 categories:
+
+### Tests for External Services
+
+Tests for External Services are tests designed to test the APIs functionality, and whether they are returning expected response code and data types.
+
+* ```test_covid19_api.py``` includes 5 test cases for the COVID-19 API, provided by Public Health England. The breakdown of the test can be found below
+
+    * ```test_covid_api_endpoint``` tests whether the API endpoint is correct, therefore ensures data being fetched from the correct source
+    
+    * ```test_covid_api_response``` tests whether the API returns response code 200 (Normal)
+    
+    * ```test_covid_api_results``` tests whether the API returns more than 1 COVID-19 results
+    
+    * ```test_covid_api_type``` tests whether the API returns the correct data type (dictionary)
+    
+    * ```test_news_api_locationerror``` tests whether the API returns response code 204 due to location error (France not supported by this API)
+    
+* ```test_news_api.py``` includes 5 test cases designed for the newsapi. The breakdown of the test can be found below 
+
+    * ```test_news_api_status``` tests whether the API returns status ```ok``` when called
+    
+    * ```test_news_api_results``` tests whether the API returns more than 1 results
+    
+    * ```test_news_api_type``` tests whether the API returns the correct data type (dictionary)
+    
+    * ```test_news_api_noapikey``` tests whether the API returns status code 401 (Unauthorized) if there is no API key
+    
+    * ```test_news_api_languageerror``` tests whether the API returns code 400 (Bad Request) if language requested is invalid
+    
+* ```test_weather_api.py``` includes 5 tests cases for the openweatherapi. The breakdown of the test can be found below
+
+    * ```test_weather_api_status``` tests whether the API returns response code 200 (Normal)
+    
+    * ```test_weather_api_type``` tests whether the API returns the correct data type (dictionary)
+    
+    * ```test_weather_api_noapikey``` tests whether the API returns code 401 (Unauthorized) if API key is missing 
+    
+    * ```test_weather_api_locationerror``` tests whether the API returns code 400 (Bad Request) if invalid latitude and longitude is inputted
+    
+    * ```test_weather_api_invalidunit``` tests whether the API returns code 200 (Normal) even if an invalid unit is inputted (default unit for API is set to standard)
+    
+### Unit Testing 
 
 ***
 
