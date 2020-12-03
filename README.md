@@ -2,17 +2,17 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](http://ansicolortags.readthedocs.io/?badge=latest) [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/matthewcheng222/COVID19_Smart_Alarm/blob/main/LICENSE) [![PyPI status](https://img.shields.io/pypi/status/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 
-COVID19_Smart_Alarm is developed for Continous Assessment 3 of the ECM1400 module. It is an Alarm Clock with smart features, which is espically useful during the times of a global pandemic. 
+COVID19_Smart_Alarm is developed for Continous Assessment 3 of the ECM1400 module. It is an Alarm Clock with smart features, which is espically useful during the times of a global pandemic
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
 
 ### Prerequisites
 
 The smart alarm is written in Python 3 programming language. In order to run the program, you will need a working Python 3 interpreter (Available [here](https://www.python.org/downloads/)). You will also need a text-editor or an Integrated development environment (IDE) if you wish to develop further on this project.
 
-*Note: Due to the format of assessment submission, a virtual environment is **not** used when developing.*
+*Note: Due to the format of assessment submission, a virtual environment is **not** used when developing*
 
 ### Installing
 
@@ -267,7 +267,7 @@ The part of top news notification creates notifications according to the presele
 
 ### How to test?
 
-* This project includes a number of test cases and uses pytest as a method of testing. To get started:
+* This project includes a total of 33 of test cases and uses pytest as a method of testing. To install pytest:
 
     1. In terminal of your local computer, type in ```pip install -U pytest``` and then click enter in order to install the pytest package
 
@@ -275,13 +275,13 @@ The part of top news notification creates notifications according to the presele
 
 * After the two commands above, pytest is installed on your local computer. In order to access the test cases and test functions:
 
-    1. Change your directory to the "tests" folder of the project by using command ```cd tests``` (Note that you have to be in directory of the project folder already)
+    1. The tests folder contain 2 sub-folders, namely unit and external. Ensure both folders are present and ensure the sub-folders contains tests file with the name ```test_xxx.py```
 
-    2. Make sure the test files are present in the folder, test files should have the name ```test_xxx.py```
+    2. Change your directory to the "tests" folder of the project by typing the command ```cd tests``` in your terminal (Note that you have to be in directory of the project folder already)
 
     3. In the terminal, type in the command ```python -m pytest```. All designed test cases should pass (with colour of text in green)
 
-    4. In the bottom of returned messages, you will see ```=== xx passed in x.xx s===```, which represents how many tests passes in the time
+    4. In the bottom of returned messages, you will see ```=== 33 passed in x.xx s===```. In this case, all tests are passed
 
 Tests included with this project can be divided into 2 categories, namely "Test for External Services" and "Unit tests". The breakdown of tests can be found below
 
@@ -326,6 +326,54 @@ Tests for External Services are tests designed to test the APIs functionality, a
     * ```test_weather_api_invalidunit``` tests whether the API returns code 200 (Normal) even if an invalid unit is inputted (default unit for API is set to standard)
     
 #### Unit Tests
+
+Unit tests are designed to test individual functions of the project, and make sure the expected outcome is correct. There are a total of 5 unit tests
+
+* ```test_current_weather.py``` includes 3 test cases with contents as follow
+
+    * ```test_current_weather_outputtype``` tests whether the data type returned is correct (string)
+    
+    * ```test_current_weather_outputlength``` tests whether the function returns a valid string with length larger than 0 (not empty)
+
+    * ```test_current_weather_firstletteruppercase``` tests whether returned string's first letter is in upper case
+    
+    * ```test_current_weather_outputword``` tests whether the first part of returned string is as expected
+    
+* ```test_run_alarm.py``` includes 3 test cases with contents as follow
+
+    * ```test_run_alarm_alarmnomatch``` tests whether the function behave correctly if alarm label passed is not in the list (does not create an alarm)
+    
+    * ```test_run_alarms_normal``` tests whether an alarm is correctly created with the correct alarm label
+    
+    * ```test_run_alarm_notstring``` tests whether the function skips creating an alarm if an integer is passed in
+    
+* ```test_top_news_details.py``` includes 3 test cases with contents as follow 
+
+    * ```test_top_news_details_datatype``` tests whether the correct data type is returned (list)
+    
+    * ```test_top_news_details_returnedlength``` tests whether news details are fetched and added correctly into the list (length > 0)
+    
+    * ```test_top_news_details_dismissedlist``` tests whether the dismissed notifications list is empty (since nothing is added into the list in this function)
+    
+* ```test_top_news_titles.py``` includes 3 test cases with contents as follow
+
+    * ```test_top_news_titles_outputtype``` tests whether the correct data type is returned (string)
+    
+    * ```test_top_news_titles_outputlength``` tests whether news titles are fetched and returned correctly (length > 0)
+    
+    * ```test_top_news_titles_outputuppercase``` tests whether the returned string's first letter is in upper case
+    
+    * ```test_top_news_titles_outputword``` tests whether the first part of returned string is as expected
+    
+* ```test_uk_covid_announcement.py``` includes 4 test cases with contents as follow
+
+    * ```test_uk_covid_announcement_outputtype``` tests whether the correct data type is returned (string)
+    
+    * ```test_uk_covid_announcement_outputlength``` tests whether the length of output is larger than 0 
+    
+    * ```test_uk_covid_announcement_outputuppercase``` tests whether the returned string's first letter is in upper case
+    
+    * ```test_uk_covid_announcement_outputword``` tests whether the first part of outputted word is as expected
 
 ***
 
