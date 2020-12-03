@@ -450,17 +450,20 @@ def announcement(alarm_label : str, announcement_type : str) -> None:
     #Calling function for CVID-19 announcement
     news_briefing = top_news_titles()
     #Calling function for news titles announcement
-    announcement_default = greeting + time_briefing + weather_briefing\
-        + covid_briefing + news_briefing
+    announcement_default = greeting + time_briefing + covid_briefing
     announcement_with_weather = greeting + time_briefing + weather_briefing\
         + covid_briefing
     announcement_with_news = greeting + time_briefing + covid_briefing\
         + news_briefing
+    announcement_news_weather = greeting + time_briefing + weather_briefing\
+        + covid_briefing + news_briefing
     if announcement_type == "weather_only": #Setting announcement type
         briefing = announcement_with_weather
     elif announcement_type == "news_only": #Setting announcement type
         briefing = announcement_with_news
     elif announcement_type == "news_and_weather": #Setting announcement type
+        briefing = announcement_news_weather
+    elif announcement_type == "announcement_default":
         briefing = announcement_default
     engine = pyttsx3.init() #Initializing the PyTTSx3 engine
     speak_rate = config["pyttsx3"]["speak_rate"]
@@ -525,7 +528,7 @@ def alarm(alarm_datetime, alarm_label, with_news, with_weather):
         content = "Your alarm is set at " + str(time_alarm) + " with"\
             + " default announcements. (Created at " +\
                 str(current_time) + ")"
-        announcement_type = "news_and_weather"
+        announcement_type = "announcement_default"
     title = alarm_label #Setting title of widget to be label of alarm
     alarm_dictionary = {'title' : title, 'content' : content}
     alarm_sched_directory = {'alarm_label':alarm_label,
@@ -588,7 +591,7 @@ def index():
         remove_notifications -- Title of the notifications to be dismissed
     """
     s.run(blocking=False) #Running the sched module without blocking
-    page_title = Markup("ECM1400 CA3 <br> COVID_19 Smart Alarm")
+    page_title = Markup("ECM1400 CA3 <br> COVID-19 Smart Alarm")
     #Setting the page title of the HTML template
     favicon = "/static/favicon.ico" #Setting the favicon of the HTML template
     image = "image.jpg" #Setting the logo of the HTML template
