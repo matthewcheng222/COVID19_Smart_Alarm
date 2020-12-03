@@ -217,9 +217,9 @@ An alarm/notification can be removed/dismissed using the 'x' on the top right ha
 
 ### Ringing of an alarm
 
-When an alarm triggers (i.e time of alarm is now), an announcement will be played, contents of the announcement depends on what have been selected when creating the alarm. By default (nothing was ticked when creating an alarm), an announcement contains time briefing, weather briefing, covid briefing and news briefing. 
+When an alarm triggers (i.e time of alarm is now), an announcement will be played, contents of the announcement depends on what have been selected when creating the alarm. By default (nothing was ticked when creating an alarm), an announcement contains time briefing and covid briefing. 
 
-*Note : Time announcement and COVID-19 briefing are always announced*
+*Note : Only titles of news will be read out in order to keep the alarm trigger short*
 
 ***
 
