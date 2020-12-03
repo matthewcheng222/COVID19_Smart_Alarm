@@ -21,9 +21,11 @@ Depending on your programming environment, new Python Packages may need to be in
 *Note: If you are developing this program on UNIX systems, Both Python 2 and Python 3 may be installed. If this is the case, use **python3** instead of **python** and use **pip3** instead of **pip***
 
 Check if you have the latest version of Python in the command prompt/ terminal:
+
 ```
 python --version
 ```
+
 If you have a Python version below 3.7 or if you see "python: command not found". Please download and install a new Python interpreter [here](https://www.python.org/downloads/).
 
 ***
@@ -162,18 +164,18 @@ Open the file master.py to run the program. You could either use your terminal/c
 
 If you are using a terminal:
 
-a. Open your termial 
+1. Open your termial 
 
-b. Change directory to the folder ```CA3 - COVID19 Smart Alarm``` of this project using ```cd <folder path>```, where <folder path> is the path on your machine. 
+2. Change directory to the folder ```CA3 - COVID19 Smart Alarm``` of this project using ```cd <folder path>```, where <folder path> is the path on your machine. 
     
-c. Using the command ```python3 master.py```, the program will start running.
+3. Using the command ```python3 master.py```, the program will start running.
 
 
 If you are using an IDE:
 
-a. Open master.py on your IDE
+1. Open master.py on your IDE
 
-b. Run the program (Varies between IDE's)
+2. Run the program (Varies between IDE's)
 
 ***
 
@@ -191,15 +193,15 @@ If you can access and see the page correctly, the setup for this project is comp
 
 An alarm could be created using the form in the middle of the page, below are some instructions on how to do it.
 
-Fill in the ```date/time``` feild with the date and time you would like the alarm to trigger (In the format of YYYY-MM-DD HH:MM)
+1. Fill in the ```date/time``` feild with the date and time you would like the alarm to trigger (In the format of YYYY-MM-DD HH:MM)
 
-Fill in the ```Update label``` feild for the label of the alarm
+2. Fill in the ```Update label``` feild for the label of the alarm
 
-Tick the ```Include news briefing?``` feild if you would like news briefing to be included in your alarm announcement
+3. Tick the ```Include news briefing?``` feild if you would like news briefing to be included in your alarm announcement
 
-Tick the ```Include weather briefing?``` feild if you would like weather briefing to be included in your alarm announcement
+4. Tick the ```Include weather briefing?``` feild if you would like weather briefing to be included in your alarm announcement
 
-FInally, click the ```Submit``` button to create the alarm
+5. FInally, click the ```Submit``` button to create the alarm
 
 *Note : Browsers which do not support datetime_local feild do not have a date/time picker, therefore may require manual entry of dates and time*
 
@@ -231,29 +233,29 @@ The features of each notification are as follows:
 
 The part of weather notifications is divided into 3 parts, namely ```wind speed notification```, ```rain probability notification``` and ```daily temp uvi notification```. Other than wind speed notification, all notifications are triggered when the program runs. 
 
-1. Wind Speed notification
+* Wind Speed notification
 
-Wind speed notification will contain the wind speed and direction if the wind speed is higher than the trigger threshold (set by user in config.json)
+    * Wind speed notification will contain the wind speed and direction if the wind speed is higher than the trigger threshold (set by user in config.json)
 
-2. Rain Probability notification 
+* Rain Probability notification 
 
-Rain probability notification will contain the probability of rain of the day
+    * Rain probability notification will contain the probability of rain of the day
 
-3. Daily Temp UVI notification 
+* Daily Temp UVI notification 
 
-Daily Temp UVI notification will contain the maximum and minimum temperature of the day, as well as the UV index in midday. 
+    * Daily Temp UVI notification will contain the maximum and minimum temperature of the day, as well as the UV index in midday. 
 
 #### UK COVID-19 Notifications
 
 The part of UK COVID-19 notifications is divided into 2 parts, ```national cases notification``` and ```covid infection threshold notification```, where covid infection threshold notification is triggered by daily new case is higher than the trigger threshold (set by user in config.json)
 
-1. National Case notification 
+* National Case notification 
 
-National case notification contains the latest national COVID cases and the release date of data. A new notification will be created when new data has been released for the day. 
+    * National case notification contains the latest national COVID cases and the release date of data. A new notification will be created when new data has been released for the day. 
 
-2. COVID-19 Infection Threshold notification 
+* COVID-19 Infection Threshold notification 
 
-COVID-19 infection threshold notification contains the threshold that new and cumulative cases have reached.
+    * COVID-19 infection threshold notification contains the threshold that new and cumulative cases have reached.
 
 #### Top News Notifications 
 
@@ -326,8 +328,12 @@ Moreover, since the death data (daily and cumulative) are not updated everyday, 
 ## Built With
 
 * [Python3](https://www.python.org/) - The Programming Language Used
+* [Requests](https://pypi.org/project/requests/) - Used to get data for various APIs
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/) - The WSGI Web Application Framework used
 * [PyTTSx3](https://github.com/nateshmbhat/pyttsx3) - Used for converting Text-to-Speech 
+* [NewsAPI](https://newsapi.org) - Used for fetching up-to-date news articles
+* [OpenweatherAPI](https://openweathermap.org/api) - Used for fetching real-time weather data
+* [PHE COVID19 Dashboard API](https://github.com/publichealthengland/coronavirus-dashboard-api-python-sdk) - Used for fetching official COVID-19 figures in the UK
 
 ## Versioning
 
