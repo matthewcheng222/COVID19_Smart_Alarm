@@ -265,9 +265,27 @@ The part of top news notification creates notifications according to the presele
 
 ## Testing
 
-A number of tests files have been created and included with this project, and they can be distributed into 2 categories:
+### How to test?
 
-### Tests for External Services
+* This project includes a number of test cases and uses pytest as a method of testing. To get started:
+
+    1. In terminal of your local computer, type in ```pip install -U pytest``` and then click enter in order to install the pytest package
+
+    2. Check the version of your pytest by typing ```pytest --version``` in your terminal, make sure you have the latest version (version 6.1.2 at time of writing)
+
+* After the two commands above, pytest is installed on your local computer. In order to access the test cases and test functions:
+
+    1. Change your directory to the "tests" folder of the project by using command ```cd tests``` (Note that you have to be in directory of the project folder already)
+
+    2. Make sure the test files are present in the folder, test files should have the name ```test_xxx.py```
+
+    3. In the terminal, type in the command ```python -m pytest```. All designed test cases should pass (with colour of text in green)
+
+    4. In the bottom of returned messages, you will see ```=== xx passed in x.xx s===```, which represents how many tests passes in the time
+
+Tests included with this project can be divided into 2 categories, namely "Test for External Services" and "Unit tests". The breakdown of tests can be found below
+
+#### Tests for External Services
 
 Tests for External Services are tests designed to test the APIs functionality, and whether they are returning expected response code and data types.
 
@@ -307,7 +325,7 @@ Tests for External Services are tests designed to test the APIs functionality, a
     
     * ```test_weather_api_invalidunit``` tests whether the API returns code 200 (Normal) even if an invalid unit is inputted (default unit for API is set to standard)
     
-### Unit Testing 
+#### Unit Tests
 
 ***
 
