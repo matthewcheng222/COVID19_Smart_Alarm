@@ -26,7 +26,7 @@ Check if you have the latest version of Python in the command prompt/ terminal:
 python --version
 ```
 
-If you have a Python version below 3.7 or if you see "python: command not found". Please download and install a new Python interpreter [here](https://www.python.org/downloads/).
+If you have a Python version below 3.7 or if you see "python: command not found". Please download and install a latest Python interpreter [here](https://www.python.org/downloads/).
 
 ***
 
@@ -77,7 +77,7 @@ For **Section 1 - "Current_Weather"**, replace the contents represented with <fe
        
     * ```imperial``` (temperature in Fahrenheit, wind speed in miles/hour)
        
-* ```"wx_refresh_frequency":<feild>``` - How often would you like weather data to refresh (in seconds)
+* ```"wx_refresh_frequency":<feild>``` - How often would you like the weather data to refresh (in seconds)
    
 * ```"wind_speed_trigger":<feild``` - If real-time wind speed exceeds this value, notifications will trigger (in units of your selection)
     
@@ -133,7 +133,7 @@ Below are the list and meanings of default values which is included in config.js
 
 * ```"area_name":"Exeter"``` -> Default location of local COVID-19 cases is Exeter
 
-* ```"covid_refresh_frequency":3600``` -> COVID-19 datawill be refreshed every hour by default 
+* ```"covid_refresh_frequency":3600``` -> COVID-19 data will be refreshed every hour by default 
 
 * ```"no_to_trigger_threshold":10000``` -> COVID-19 threshold reached notification will trigger if daily COVID-19 cases is above 10000 by default 
 
